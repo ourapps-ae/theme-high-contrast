@@ -1,0 +1,110 @@
+{
+  "format": 1,
+  "default": "night",
+  "themes": [
+    {
+      "name": "night",
+      "colour": {
+        "background": "#000000",
+        "surface": "#141414",
+        "edge": "#ffffff",
+        "primary": "#ffd60a",
+        "onPrimary": "#000000",
+        "table": "#00331f",
+        "tableEdge": "#ffffff",
+        "text": "#ffffff",
+        "muted": "#e0e0e0",
+        "danger": "#ff8080",
+        "good": "#5cff7a",
+        "warning": "#ffbf33",
+        "paper": "#ffffff",
+        "paperAccent": "#b3000c"
+      },
+      "spacing": {
+        "xs": 4,
+        "sm": 8,
+        "md": 12,
+        "lg": 16,
+        "xl": 24
+      },
+      "radii": {
+        "sm": 6,
+        "md": 12,
+        "lg": 16,
+        "pill": 999
+      },
+      "type": {
+        "family": "-apple-system, system-ui, 'Segoe UI', Roboto, sans-serif",
+        "caption": 11,
+        "small": 13,
+        "body": 15,
+        "subtitle": 17,
+        "title": 22,
+        "display": 36
+      },
+      "background": {
+        "tint": "#ffd60a",
+        "glow": "#ffffff",
+        "glowFromTop": false,
+        "speed": 1,
+        "suitAlpha": 0.5,
+        "specks": 80,
+        "speckUp": true,
+        "speckColour": "#ffffff",
+        "glyphs": "♠♥♦♣"
+      }
+    },
+    {
+      "name": "lounge",
+      "colour": {
+        "background": "#0a0600",
+        "surface": "#1c140a",
+        "edge": "#ffffff",
+        "primary": "#8fd8ff",
+        "onPrimary": "#000000",
+        "table": "#2b1d00",
+        "tableEdge": "#ffffff",
+        "text": "#ffffff",
+        "muted": "#ece3d2",
+        "danger": "#ff8080",
+        "good": "#5cff7a",
+        "warning": "#ffbf33",
+        "paper": "#ffffff",
+        "paperAccent": "#b3000c"
+      },
+      "spacing": {
+        "xs": 4,
+        "sm": 8,
+        "md": 12,
+        "lg": 16,
+        "xl": 24
+      },
+      "radii": {
+        "sm": 6,
+        "md": 12,
+        "lg": 16,
+        "pill": 999
+      },
+      "type": {
+        "family": "-apple-system, system-ui, 'Segoe UI', Roboto, sans-serif",
+        "caption": 11,
+        "small": 13,
+        "body": 15,
+        "subtitle": 17,
+        "title": 22,
+        "display": 36
+      },
+      "background": {
+        "tint": "#8fd8ff",
+        "glow": "#ffffff",
+        "glowFromTop": true,
+        "speed": 0.5,
+        "suitAlpha": 0.35,
+        "specks": 40,
+        "speckUp": false,
+        "speckColour": "#ffffff",
+        "glyphs": "♠♥♦♣"
+      }
+    }
+  ]
+}

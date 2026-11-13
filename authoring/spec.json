@@ -1,0 +1,135 @@
+{
+  "name": "theme-high-contrast",
+  "version": "0.1.0",
+  "title": "Theme, high contrast",
+  "description": "High-contrast design tokens: the theme interface (ae/theme) with night and lounge looks whose text, buttons and table meet WCAG AA contrast (4.5:1), rendered to CSS variables, Swift constants and Kotlin constants, plus the animated background.",
+  "facilities": [
+    {
+      "id": "theme",
+      "description": "High-contrast design tokens and animated background for web, Apple and Android clients"
+    }
+  ],
+  "provides": [
+    {
+      "id": "theme",
+      "type": "ae/theme",
+      "version": "1.0.0",
+      "path": "interfaces/theme.json"
+    }
+  ],
+  "requires": [],
+  "collect": [
+    {
+      "id": "themeName",
+      "type": "string",
+      "grammar": "slug",
+      "required": false,
+      "secret": false,
+      "default": "night"
+    },
+    {
+      "id": "primaryColour",
+      "type": "string",
+      "grammar": "label",
+      "required": false,
+      "secret": false
+    },
+    {
+      "id": "tableColour",
+      "type": "string",
+      "grammar": "label",
+      "required": false,
+      "secret": false
+    }
+  ],
+  "dependencies": [],
+  "suites": [
+    {
+      "id": "web",
+      "argv": [
+        "node",
+        "--test",
+        "tests/web.test.ts"
+      ],
+      "scope": "required-local",
+      "tools": {
+        "node": "26.5.0"
+      }
+    },
+    {
+      "id": "apple",
+      "argv": [
+        "python3",
+        "tests/native.py",
+        "apple"
+      ],
+      "scope": "platform",
+      "fixtures": [
+        "tests/apple/main.swift"
+      ],
+      "tools": {
+        "python3": "3.12.8",
+        "swiftc": "6.4.2"
+      }
+    },
+    {
+      "id": "android",
+      "argv": [
+        "python3",
+        "tests/native.py",
+        "android"
+      ],
+      "scope": "platform",
+      "fixtures": [
+        "tests/android/Main.kt"
+      ],
+      "tools": {
+        "python3": "3.12.8",
+        "kotlinc": "2.2.0",
+        "java": "26.0.1"
+      }
+    }
+  ],
+  "tools": {
+    "node": "26.5.0",
+    "python3": "3.12.8",
+    "swiftc": "6.4.2",
+    "kotlinc": "2.2.0",
+    "java": "26.0.1"
+  },
+  "platforms": [
+    "web",
+    "apple",
+    "android",
+    "server"
+  ],
+  "text": {
+    "purpose": "`theme-high-contrast` is the theme interface (`ae/theme`) with high-contrast looks, for people who need stronger contrast or play in bright rooms. It has the same shape, functions and settings as `theme`, so a recipe can put it in any slot whose class is the theme class. Its `themes.json` holds `night` (black room, white text, yellow buttons, dark green table) and `lounge` (dark brown room, white text, light blue buttons, dark brown table); every text, button and status colour is opaque and has a contrast ratio of at least 4.5:1 (WCAG 2.1 AA for body text) against every surface it is drawn on. One `themes.json` renders to CSS variables for the web, Swift constants for Apple and Kotlin constants for Android.",
+    "userInputs": "`themeName` selects a theme from `themes.json` (`night` or `lounge`); an unknown name falls back to the default. `primaryColour` and `tableColour` are optional colours that replace the theme's primary and table colours; empty means the theme's own. A replacement colour is not checked for contrast.",
+    "integration": "Web: import `resolveTheme` and `applyTheme` from the entry module `web/index.ts`, apply the result to `document.documentElement`, link `web/theme.css` for the shipped themes (`:root` is the default theme, `[data-theme=name]` the others), and construct `Background` from `web/index.ts` on a full-screen canvas with `setScene` for pictures. Apple: compile `ThemeTypes.swift`, `ThemeTokens.swift`, `BackgroundMath.swift` anywhere, and `ThemeBackgroundView.swift` in UIKit targets (iOS, tvOS, Mac Catalyst); read colours as `ThemeSet.named(name).resolved(primary:table:)` and `Color(themeColour)`. Android: add the three Kotlin files and `ThemeBackground.kt` to a Compose module; `ThemeSet.named(name).resolved(...)`. To change a look, edit `themes.json` and run `node web/build-tokens.ts themes.json --css DIR --swift DIR --kotlin DIR` to regenerate the three outputs; `tokens.schema.json` documents the shape and `validateTokens` enforces it. Other components (`controls`, `table-layout`, `card-graphics`, `chip-graphics`) read colours from these tokens.",
+    "infrastructure": "None. Pure data, local rendering and on-device drawing. No accounts, network or deployment.",
+    "verification": "Node tests check the token shape against the schema, that the OpenRPC interface's token schemas agree with `tokens.schema.json` and that every method it lists is an exported web function, overrides, CSS variable rendering, that the committed generated CSS, Swift and Kotlin equal what the renderers produce, the background placement maths, and that every theme meets WCAG AA contrast (4.5:1) for text, muted text, buttons and status colours on the background, surface and table. The Apple check compiles the Swift and compares colours and frames with the TypeScript fixtures; the Android check is written for kotlinc and does not run where kotlinc is missing.",
+    "scenarios": "A recipe that names the `theme` slot gets the high-contrast looks with `aepm design ... --substitute theme=ourapps-ae/theme-high-contrast@0.1.0`; every client then draws the same high-contrast colours. A recipe's look answer keeps choosing between `night` and `lounge`.",
+    "updates": "Patch updates replace files only. Regenerate the CSS, Swift and Kotlin outputs after any change to `themes.json`. The component keeps no data; removal deletes its files and the generated outputs."
+  },
+  "agentInstructions": "Select `ourapps-ae/theme-high-contrast` for a theme slot when the person asks for high contrast, larger contrast or better readability; it fits every slot whose class is the `ae/theme` class. Set `themeName` from the recipe's look answer; set the two colour settings only when the user gave brand colours (a replacement colour is not checked for contrast). Connect `theme` to every component that requires it.",
+  "developerInstructions": "Supply scene pictures (a backdrop and an optional foreground figure per theme) and load them in your application; pass them to `Background.setScene`, `BackgroundScene` (Swift) or `BackgroundScene` (Kotlin). Add themes in `themes.json`, then run the build script to regenerate `theme.css`, `ThemeTokens.swift` and `ThemeTokens.kt`. Do not edit generated files.",
+  "suitability": {
+    "format": 1,
+    "jobs": [
+      "theme"
+    ],
+    "profiles": [
+      {
+        "id": "any",
+        "load": {},
+        "cost": "none",
+        "regions": [
+          "any"
+        ],
+        "compliance": []
+      }
+    ],
+    "notes": "Pure library; no provider limits apply."
+  }
+}
