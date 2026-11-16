@@ -59,7 +59,7 @@ Node tests check the token shape against the schema, that the OpenRPC interface'
 - `python3 tests/native.py android` (android, platform; tools: python3 3.12.8, kotlinc 2.2.0, java 26.0.1)
 
 ## Scenarios and presentation
-A recipe that names the `theme` slot gets the high-contrast looks with `aepm design ... --substitute theme=ourapps-ae/theme-high-contrast@0.1.0`; every client then draws the same high-contrast colours. A recipe's look answer keeps choosing between `night` and `lounge`.
+A recipe that names the `theme` slot gets the high-contrast looks with `aepm design ... --substitute theme=ourapps-ae/theme-high-contrast@0.2.0`; every client then draws the same high-contrast colours. A recipe's look answer keeps choosing between `night` and `lounge`.
 
 ## Updates and removal
 Patch updates replace files only. Regenerate the CSS, Swift and Kotlin outputs after any change to `themes.json`. The component keeps no data; removal deletes its files and the generated outputs.
