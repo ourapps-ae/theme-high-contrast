@@ -1,6 +1,6 @@
 {
   "name": "theme-high-contrast",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "title": "Theme, high contrast",
   "description": "High-contrast design tokens: the theme interface (ae/theme) with night and lounge looks whose text, buttons and table meet WCAG AA contrast (4.5:1), rendered to CSS variables, Swift constants and Kotlin constants, plus the animated background.",
   "facilities": [
@@ -69,7 +69,8 @@
       ],
       "tools": {
         "python3": "3.12.8",
-        "swiftc": "6.4.2"
+        "swiftc": "6.4.2",
+        "xcrun": "72"
       }
     },
     {
@@ -109,7 +110,7 @@
     "integration": "Web: import `resolveTheme` and `applyTheme` from the entry module `web/index.ts`, apply the result to `document.documentElement`, link `web/theme.css` for the shipped themes (`:root` is the default theme, `[data-theme=name]` the others), and construct `Background` from `web/index.ts` on a full-screen canvas with `setScene` for pictures. Apple: compile `ThemeTypes.swift`, `ThemeTokens.swift`, `BackgroundMath.swift` anywhere, and `ThemeBackgroundView.swift` in UIKit targets (iOS, tvOS, Mac Catalyst); read colours as `ThemeSet.named(name).resolved(primary:table:)` and `Color(themeColour)`. Android: add the three Kotlin files and `ThemeBackground.kt` to a Compose module; `ThemeSet.named(name).resolved(...)`. To change a look, edit `themes.json` and run `node web/build-tokens.ts themes.json --css DIR --swift DIR --kotlin DIR` to regenerate the three outputs; `tokens.schema.json` documents the shape and `validateTokens` enforces it. Other components (`controls`, `table-layout`, `card-graphics`, `chip-graphics`) read colours from these tokens.",
     "infrastructure": "None. Pure data, local rendering and on-device drawing. No accounts, network or deployment.",
     "verification": "Node tests check the token shape against the schema, that the OpenRPC interface's token schemas agree with `tokens.schema.json` and that every method it lists is an exported web function, overrides, CSS variable rendering, that the committed generated CSS, Swift and Kotlin equal what the renderers produce, the background placement maths, and that every theme meets WCAG AA contrast (4.5:1) for text, muted text, buttons and status colours on the background, surface and table. The Apple check compiles the Swift and compares colours and frames with the TypeScript fixtures; the Android check is written for kotlinc and does not run where kotlinc is missing.",
-    "scenarios": "A recipe that names the `theme` slot gets the high-contrast looks with `aepm design ... --substitute theme=ourapps-ae/theme-high-contrast@0.3.0`; every client then draws the same high-contrast colours. A recipe's look answer keeps choosing between `night` and `lounge`.",
+    "scenarios": "A recipe that names the `theme` slot gets the high-contrast looks with `aepm design ... --substitute theme=ourapps-ae/theme-high-contrast@0.4.0`; every client then draws the same high-contrast colours. A recipe's look answer keeps choosing between `night` and `lounge`.",
     "updates": "Patch updates replace files only. Regenerate the CSS, Swift and Kotlin outputs after any change to `themes.json`. The component keeps no data; removal deletes its files and the generated outputs."
   },
   "agentInstructions": "Select `ourapps-ae/theme-high-contrast` for a theme slot when the person asks for high contrast, larger contrast or better readability; it fits every slot whose class is the `ae/theme` class. Set `themeName` from the recipe's look answer; set the two colour settings only when the user gave brand colours (a replacement colour is not checked for contrast). Connect `theme` to every component that requires it.",

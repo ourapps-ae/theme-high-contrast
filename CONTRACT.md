@@ -34,7 +34,7 @@ Facilities: `theme` (High-contrast design tokens and animated background for web
 - `implementation/web/tokens.ts` -> `components/theme-high-contrast/web/tokens.ts`
 
 Dependencies: none.
-`tools.lock.json` pins verification tools: node 26.5.0, python3 3.12.8, swiftc 6.4.2, kotlinc 2.2.0, java 26.0.1. Licence: `Apache-2.0` (`LICENCE`, `NOTICE`).
+`tools.lock.json` pins verification tools: node 26.5.0, python3 3.12.8, swiftc 6.4.2, xcrun 72, kotlinc 2.2.0, java 26.0.1. Licence: `Apache-2.0` (`LICENCE`, `NOTICE`).
 
 ## Provided interfaces
 - `interfaces/theme.json` defines `theme` (ae/theme) version 1.0.0.
@@ -55,11 +55,11 @@ None. Pure data, local rendering and on-device drawing. No accounts, network or 
 Node tests check the token shape against the schema, that the OpenRPC interface's token schemas agree with `tokens.schema.json` and that every method it lists is an exported web function, overrides, CSS variable rendering, that the committed generated CSS, Swift and Kotlin equal what the renderers produce, the background placement maths, and that every theme meets WCAG AA contrast (4.5:1) for text, muted text, buttons and status colours on the background, surface and table. The Apple check compiles the Swift and compares colours and frames with the TypeScript fixtures; the Android check is written for kotlinc and does not run where kotlinc is missing.
 
 - `node --test tests/web.test.ts` (web, required-local; tools: node 26.5.0)
-- `python3 tests/native.py apple` (apple, platform; tools: python3 3.12.8, swiftc 6.4.2)
+- `python3 tests/native.py apple` (apple, platform; tools: python3 3.12.8, swiftc 6.4.2, xcrun 72)
 - `python3 tests/native.py android` (android, platform; tools: python3 3.12.8, kotlinc 2.2.0, java 26.0.1)
 
 ## Scenarios and presentation
-A recipe that names the `theme` slot gets the high-contrast looks with `aepm design ... --substitute theme=ourapps-ae/theme-high-contrast@0.3.0`; every client then draws the same high-contrast colours. A recipe's look answer keeps choosing between `night` and `lounge`.
+A recipe that names the `theme` slot gets the high-contrast looks with `aepm design ... --substitute theme=ourapps-ae/theme-high-contrast@0.4.0`; every client then draws the same high-contrast colours. A recipe's look answer keeps choosing between `night` and `lounge`.
 
 ## Updates and removal
 Patch updates replace files only. Regenerate the CSS, Swift and Kotlin outputs after any change to `themes.json`. The component keeps no data; removal deletes its files and the generated outputs.
