@@ -3,7 +3,7 @@
 ## For the agent
 Select `ourapps-ae/theme-high-contrast` for a theme slot when the person asks for high contrast, larger contrast or better readability; it fits every slot whose class is the `ae/theme` class. Set `themeName` from the recipe's look answer; set the two colour settings only when the user gave brand colours (a replacement colour is not checked for contrast). Connect `theme` to every component that requires it.
 
-- Select package `ourapps-ae/theme-high-contrast` version `0.4.0`.
+- Select package `ourapps-ae/theme-high-contrast` version `0.5.0`.
 - Settings to configure:
   - `themeName` (string, slug; optional; default `night`)
   - `primaryColour` (string, label; optional)
